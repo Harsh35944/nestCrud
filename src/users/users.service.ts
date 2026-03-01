@@ -46,6 +46,10 @@ export class UsersService {
       this.userModel.findById(targetUserId).exec(),
     ]);
 
+    if (!currentUser) {
+      throw new NotFoundException('Current user not found');
+    }
+
     if (!targetUser) {
       throw new NotFoundException('User to follow not found');
     }
@@ -79,6 +83,10 @@ export class UsersService {
       this.userModel.findById(currentUserId).exec(),
       this.userModel.findById(targetUserId).exec(),
     ]);
+
+    if (!currentUser) {
+      throw new NotFoundException('Current user not found');
+    }
 
     if (!targetUser) {
       throw new NotFoundException('User to unfollow not found');
